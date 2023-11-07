@@ -14,3 +14,8 @@ class UserOut(BaseModel):
     name: str
     username: str
     email: EmailStr
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str = Field(..., min_length=2)
