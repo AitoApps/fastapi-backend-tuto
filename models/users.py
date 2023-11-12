@@ -1,5 +1,6 @@
-from beanie import Document, Indexed
-
+from typing import List, Optional
+from beanie import BackLink, Document, Indexed, Link
+from pydantic import Field
 from utils.security import Password
 from utils.jwt import generate_jwt
 
@@ -16,6 +17,10 @@ class User(Document):
     @classmethod
     async def get_by_email(self, *, email: str):
         return await self.find_one(self.email == email)
+
+    @classmethod
+    async def get_by_username(self, *, username: str):
+        return await self.find_one(self.username == username)
 
    # This is a class method for user authentication.
     # It is used to verify user credentials based on their email and password.

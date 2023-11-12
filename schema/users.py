@@ -11,6 +11,7 @@ class UserCreate(BaseModel):
 
 
 class UserOut(BaseModel):
+    id: str
     name: str
     username: str
     email: EmailStr

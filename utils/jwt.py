@@ -32,10 +32,11 @@ def get_jwt_subject(token: str) -> str:
     try:
         print("token", token)
         payload: dict[str, any] = decode_jwt(encoded_jwt=token)
+        print("RRR", payload)
         subject: str = payload.get("sub")
         if subject is None:
             raise credentials_exception
-    except JWTError:
-        raise credentials_exception
+    except:
+        raise
 
     return subject

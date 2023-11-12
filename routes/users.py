@@ -1,7 +1,6 @@
+
 from fastapi import APIRouter, HTTPException, status
-
 from models.users import User
-
 from schema.users import UserCreate, UserLogin, UserOut
 from utils.security import Password
 
@@ -32,6 +31,6 @@ async def login(user_data: UserLogin):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="user with this credentials does'nt exist")
     token = user.generate_token()
-    userOut = UserOut(email=user.email,
+    userOut = UserOut(id=str(user.id), email=user.email,
                       name=user.name, username=user.username)
     return {"message": "login successfully", "access token": token}

@@ -1,9 +1,8 @@
 import certifi
-# from pymongo import MongoClient
 from config.settings import settings
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
-
+from models.posts import Post
 from models.users import User
 
 
@@ -20,4 +19,4 @@ from models.users import User
 async def init_db():
     client = AsyncIOMotorClient(
         settings.MONGODB_URI, tlsCAFile=certifi.where())
-    await init_beanie(client.mydb, document_models=[User])
+    await init_beanie(client.mydb, document_models=[User, Post])
